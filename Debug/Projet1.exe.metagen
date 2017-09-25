@@ -1,0 +1,30 @@
+  Projet1.ModificationAgents.resources - Embedded, ContainedInManifestFile, 
+  Projet1.MyForm1.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly Projet1, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Projet1.ModificationAgents: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Projet1.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    getTextBob(): PrivateScope, Public, Static, HideBySig
+    getTextElsa(): PrivateScope, Public, Static, HideBySig
+    getTextSelbatien(): PrivateScope, Public, Static, HideBySig
+    changeStateBob(String): PrivateScope, Public, Static, HideBySig
+    changeStateElsa(String): PrivateScope, Public, Static, HideBySig
+    changeStateSelBastien(String): PrivateScope, Public, Static, HideBySig
