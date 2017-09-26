@@ -296,6 +296,18 @@ void QuenchThirst::Execute(Miner* pMiner)
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
   MyForm1::getTextBob()->ScrollToCaret();
+
+
+  if (!pMiner->Thirsty())
+  {
+	  MyForm1::getTextBob()->Text += ">> Go back to work !";
+	  MyForm1::getTextBob()->Text += "\n";
+	  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
+	  MyForm1::getTextBob()->ScrollToCaret();
+
+	  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+	  MyForm1::changeStateBob("EnterMineAndDigForNugget");
+  }
 }
 
 
@@ -360,18 +372,6 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 	   return true;
 
-   default:
-	   if (!pMiner->Thirsty())
-	   {
-		   MyForm1::getTextBob()->Text += ">> Go back to work !";
-		   MyForm1::getTextBob()->Text += "\n";
-		   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-		   MyForm1::getTextBob()->ScrollToCaret();
-
-		   pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-		   MyForm1::changeStateBob("EnterMineAndDigForNugget");
-	   }
-	   return true;
 
 
    }
