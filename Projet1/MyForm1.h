@@ -11,7 +11,10 @@
 #include "MessageDispatcher.h"
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
+
 #include "ModificationAgents.h"
+
+using namespace Projet2;
 
 namespace Projet1 {
 
@@ -30,17 +33,35 @@ namespace Projet1 {
 	public:
 		MyForm1(void)
 		{
+			//define this to send output to a text file (see locations.h)
+			#ifdef TEXTOUTPUT
+						os.open("output.txt");
+			#endif
+
+			//seed random number generator
+			srand((unsigned)time(NULL));
+
+			//create entities
+			Bob = new Miner(ent_Miner_Bob);
+			Elsa = new MinersWife(ent_Elsa);
+			Selbastien = new Drunk(ent_SeLbastien);
+
+			//register them with the entity manager
+			EntityMgr->RegisterEntity(Bob);
+			EntityMgr->RegisterEntity(Elsa);
+			EntityMgr->RegisterEntity(Selbastien);
+
 			InitializeComponent();
 		}
-		static System::Windows::Forms::RichTextBox^ getTextBob()
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextBob()
 		{
 			return richTextBox3;
 		}
-		static System::Windows::Forms::RichTextBox^ getTextElsa()
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextElsa()
 		{
 			return richTextBox1;
 		}
-		static System::Windows::Forms::RichTextBox^ getTextSelbatien()
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextSelbatien()
 		{
 			return richTextBox2;
 		}
@@ -71,11 +92,9 @@ namespace Projet1 {
 
 	protected:
 
-
-
-
-
-
+	private: Miner* Bob;
+	private: MinersWife* Elsa;
+	private: Drunk* Selbastien;
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
 
 
@@ -99,23 +118,6 @@ namespace Projet1 {
 	private: static System::Windows::Forms::RichTextBox^  richTextBox1;
 	private: static System::Windows::Forms::RichTextBox^  richTextBox3;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  applicationToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  lancerToolStripMenuItem;
@@ -125,20 +127,6 @@ namespace Projet1 {
 	private: static System::Windows::Forms::Label^  label4;
 	private: static System::Windows::Forms::Label^  label5;
 	private: static System::Windows::Forms::Label^  label6;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
@@ -415,7 +403,6 @@ namespace Projet1 {
 			this->label5->TabIndex = 1;
 			this->label5->Text = L"DoHouseWork";
 			this->label5->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->label5->Click += gcnew System::EventHandler(this, &MyForm1::label5_Click);
 			// 
 			// richTextBox1
 			// 
@@ -484,7 +471,6 @@ namespace Projet1 {
 			this->label6->TabIndex = 1;
 			this->label6->Text = L"label6";
 			this->label6->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->label6->Click += gcnew System::EventHandler(this, &MyForm1::label6_Click);
 			// 
 			// richTextBox3
 			// 
@@ -604,26 +590,6 @@ private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  
 private: System::Void tableLayoutPanel7_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 }
 private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	//define this to send output to a text file (see locations.h)
-	#ifdef TEXTOUTPUT
-		os.open("output.txt");
-	#endif
-
-	//seed random number generator
-	srand((unsigned)time(NULL));
-
-	//create a miner
-	Miner* Bob = new Miner(ent_Miner_Bob);
-
-	//create his wife
-	MinersWife* Elsa = new MinersWife(ent_Elsa);
-
-	Drunk* Selbastien = new Drunk(ent_SeLbastien);
-
-	//register them with the entity manager
-	EntityMgr->RegisterEntity(Bob);
-	EntityMgr->RegisterEntity(Elsa);
-	EntityMgr->RegisterEntity(Selbastien);
 
 	//run Bob and Elsa through a few Update calls
 	for (int i = 0; i<30; ++i)
@@ -649,12 +615,9 @@ private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, Sys
 	//PressAnyKeyToContinue();
 }
 private: System::Void modifierLesÉtatsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	ModificationAgents ^form = gcnew ModificationAgents();
-	form->Show();
-}
-private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+	//Form ^f = gcnew ModificationAgents(this);
+	Form ^f = gcnew ModificationAgents();
+	f->Show();
 }
 };
 }

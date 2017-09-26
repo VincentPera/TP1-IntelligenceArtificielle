@@ -15,7 +15,7 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
-Class Projet1.ModificationAgents: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class Projet2.ModificationAgents: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Projet1.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
