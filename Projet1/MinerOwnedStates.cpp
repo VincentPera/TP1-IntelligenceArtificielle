@@ -45,6 +45,7 @@ void EnterMineAndDigForNugget::Enter(Miner* pMiner)
 	MyForm1::getTextBob()->ScrollToCaret();
 
     pMiner->ChangeLocation(goldmine);
+	MyForm1::changeLocationBob(1);
   }
 }
 
@@ -117,6 +118,7 @@ void VisitBankAndDepositGold::Enter(Miner* pMiner)
 	MyForm1::getTextBob()->ScrollToCaret();
 
     pMiner->ChangeLocation(bank);
+	MyForm1::changeLocationBob(2);
   }
 }
 
@@ -190,6 +192,7 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 	MyForm1::getTextBob()->ScrollToCaret();
 
     pMiner->ChangeLocation(shack);
+	MyForm1::changeLocationBob(0);
 
 
     //let the wife know I'm home
@@ -275,6 +278,7 @@ void QuenchThirst::Enter(Miner* pMiner)
   if (pMiner->Location() != saloon)
   {    
     pMiner->ChangeLocation(saloon);
+	MyForm1::changeLocationBob(3);
 
 	MyForm1::getTextBob()->Text += ">> Boy, ah sure is thusty! Walking to the saloon";
 	MyForm1::getTextBob()->Text += "\n";

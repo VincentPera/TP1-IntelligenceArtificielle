@@ -28,3 +28,4 @@ Class Projet1.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     changeStateBob(String): PrivateScope, Public, Static, HideBySig
     changeStateElsa(String): PrivateScope, Public, Static, HideBySig
     changeStateSelBastien(String): PrivateScope, Public, Static, HideBySig
+    changeLocationBob(Int32): PrivateScope, Public, Static, HideBySig

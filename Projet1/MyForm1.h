@@ -53,29 +53,44 @@ namespace Projet1 {
 
 			InitializeComponent();
 		}
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextBob()
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextBob(){ return richTextBox3; }
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextElsa(){ return richTextBox1; }
+		static System::Windows::Forms::RichTextBox^ MyForm1::getTextSelbatien(){ return richTextBox2; }
+		static void changeStateBob(String^ state){ label6 -> Text = state; }
+		static void changeStateElsa(String^ state){ label5 -> Text = state; }
+		static void changeStateSelBastien(String^ state){ label4 -> Text = state; }
+
+		static void changeLocationBob(int location)
 		{
-			return richTextBox3;
-		}
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextElsa()
-		{
-			return richTextBox1;
-		}
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextSelbatien()
-		{
-			return richTextBox2;
-		}
-		static void changeStateBob(String^ state)
-		{
-			label6 -> Text = state;
-		}
-		static void changeStateElsa(String^ state)
-		{
-			label5 -> Text = state;
-		}
-		static void changeStateSelBastien(String^ state)
-		{
-			label4 -> Text = state;
+			switch (location)
+			{
+			case 0: // house
+				BobHouse->Show();
+				BobMine->Hide();
+				BobSaloon->Hide();
+				BobBank->Hide();
+				break;
+			case 1: // mine
+				BobHouse->Hide();
+				BobMine->Show();
+				BobSaloon->Hide();
+				BobBank->Hide();
+				break;
+			case 2: // bank
+				BobHouse->Hide();
+				BobMine->Hide();
+				BobSaloon->Hide();
+				BobBank->Show();
+				break;
+			case 3: // saloon
+				BobHouse->Hide();
+				BobMine->Hide();
+				BobSaloon->Show();
+				BobBank->Hide();
+				break;
+			default:
+				break;
+			}
 		}
 
 	protected:
@@ -149,28 +164,28 @@ namespace Projet1 {
 
 
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel9;
-private: System::Windows::Forms::PictureBox^  BobHouse;
+private: static System::Windows::Forms::PictureBox^  BobHouse;
 private: System::Windows::Forms::PictureBox^  ElsaHouse;
 private: System::Windows::Forms::PictureBox^  SelbastienHouse;
 
 
 
 private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel10;
-private: System::Windows::Forms::PictureBox^  BobBank;
+private: static System::Windows::Forms::PictureBox^  BobBank;
 private: System::Windows::Forms::PictureBox^  ElsaBank;
 private: System::Windows::Forms::PictureBox^  SelbastienBank;
 
 
 
 private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel11;
-private: System::Windows::Forms::PictureBox^  BobMine;
+private: static System::Windows::Forms::PictureBox^  BobMine;
 private: System::Windows::Forms::PictureBox^  ElsaMine;
 private: System::Windows::Forms::PictureBox^  SelbastienMine;
 
 
 
 private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel12;
-private: System::Windows::Forms::PictureBox^  BobSaloon;
+private: static System::Windows::Forms::PictureBox^  BobSaloon;
 private: System::Windows::Forms::PictureBox^  ElsaSaloon;
 private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 
