@@ -13,3 +13,8 @@ void Drunk::Update()
   m_pStateMachine->Update();
 }
 
+void Drunk::ChangeState(State<Drunk>* state)
+{
+	m_pStateMachine->SetCurrentState(state);
+}
+

@@ -13,3 +13,8 @@ void MinersWife::Update()
  
   m_pStateMachine->Update();
 }
+
+void MinersWife::ChangeState(State<MinersWife>* state)
+{
+	m_pStateMachine->SetCurrentState(state);
+}

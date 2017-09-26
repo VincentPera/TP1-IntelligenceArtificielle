@@ -118,6 +118,18 @@ namespace Projet1 {
 	private: static System::Windows::Forms::RichTextBox^  richTextBox1;
 	private: static System::Windows::Forms::RichTextBox^  richTextBox3;
 
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  applicationToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  lancerToolStripMenuItem;
@@ -127,6 +139,46 @@ namespace Projet1 {
 	private: static System::Windows::Forms::Label^  label4;
 	private: static System::Windows::Forms::Label^  label5;
 	private: static System::Windows::Forms::Label^  label6;
+
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel9;
+private: System::Windows::Forms::PictureBox^  BobHouse;
+private: System::Windows::Forms::PictureBox^  ElsaHouse;
+private: System::Windows::Forms::PictureBox^  SelbastienHouse;
+
+
+
+private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel10;
+private: System::Windows::Forms::PictureBox^  BobBank;
+private: System::Windows::Forms::PictureBox^  ElsaBank;
+private: System::Windows::Forms::PictureBox^  SelbastienBank;
+
+
+
+private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel11;
+private: System::Windows::Forms::PictureBox^  BobMine;
+private: System::Windows::Forms::PictureBox^  ElsaMine;
+private: System::Windows::Forms::PictureBox^  SelbastienMine;
+
+
+
+private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel12;
+private: System::Windows::Forms::PictureBox^  BobSaloon;
+private: System::Windows::Forms::PictureBox^  ElsaSaloon;
+private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -146,6 +198,22 @@ namespace Projet1 {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->tableLayoutPanel9 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->BobHouse = (gcnew System::Windows::Forms::PictureBox());
+			this->ElsaHouse = (gcnew System::Windows::Forms::PictureBox());
+			this->SelbastienHouse = (gcnew System::Windows::Forms::PictureBox());
+			this->tableLayoutPanel10 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->BobBank = (gcnew System::Windows::Forms::PictureBox());
+			this->ElsaBank = (gcnew System::Windows::Forms::PictureBox());
+			this->SelbastienBank = (gcnew System::Windows::Forms::PictureBox());
+			this->tableLayoutPanel11 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->BobMine = (gcnew System::Windows::Forms::PictureBox());
+			this->ElsaMine = (gcnew System::Windows::Forms::PictureBox());
+			this->SelbastienMine = (gcnew System::Windows::Forms::PictureBox());
+			this->tableLayoutPanel12 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->BobSaloon = (gcnew System::Windows::Forms::PictureBox());
+			this->ElsaSaloon = (gcnew System::Windows::Forms::PictureBox());
+			this->SelbastienSaloon = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->tableLayoutPanel7 = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -173,6 +241,22 @@ namespace Projet1 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
+			this->tableLayoutPanel9->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobHouse))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaHouse))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienHouse))->BeginInit();
+			this->tableLayoutPanel10->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobBank))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaBank))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienBank))->BeginInit();
+			this->tableLayoutPanel11->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobMine))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaMine))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienMine))->BeginInit();
+			this->tableLayoutPanel12->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobSaloon))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaSaloon))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienSaloon))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
 			this->tableLayoutPanel7->SuspendLayout();
@@ -188,18 +272,22 @@ namespace Projet1 {
 			// 
 			this->tableLayoutPanel2->ColumnCount = 5;
 			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				19.31167F)));
+				24.57386F)));
 			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				18.18182F)));
+				10.79545F)));
 			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				21.59091F)));
+				25.28409F)));
 			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				19.03409F)));
+				15.48295F)));
 			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				21.73295F)));
+				23.72159F)));
 			this->tableLayoutPanel2->Controls->Add(this->pictureBox1, 4, 1);
 			this->tableLayoutPanel2->Controls->Add(this->pictureBox2, 2, 0);
 			this->tableLayoutPanel2->Controls->Add(this->pictureBox3, 0, 1);
+			this->tableLayoutPanel2->Controls->Add(this->tableLayoutPanel9, 2, 1);
+			this->tableLayoutPanel2->Controls->Add(this->tableLayoutPanel10, 4, 2);
+			this->tableLayoutPanel2->Controls->Add(this->tableLayoutPanel11, 0, 2);
+			this->tableLayoutPanel2->Controls->Add(this->tableLayoutPanel12, 2, 3);
 			this->tableLayoutPanel2->Controls->Add(this->pictureBox4, 2, 2);
 			this->tableLayoutPanel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->tableLayoutPanel2->Location = System::Drawing::Point(0, 24);
@@ -207,49 +295,264 @@ namespace Projet1 {
 			this->tableLayoutPanel2->RowCount = 4;
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25.95238F)));
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 30.95238F)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 33.80952F)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 9.761905F)));
-			this->tableLayoutPanel2->Size = System::Drawing::Size(704, 420);
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 29.51168F)));
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.01274F)));
+			this->tableLayoutPanel2->Size = System::Drawing::Size(704, 471);
 			this->tableLayoutPanel2->TabIndex = 7;
 			this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel2_Paint);
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(553, 111);
+			this->pictureBox1->Location = System::Drawing::Point(539, 132);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(148, 123);
+			this->pictureBox1->Size = System::Drawing::Size(162, 123);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
 			// pictureBox2
 			// 
-			this->pictureBox2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(267, 3);
+			this->pictureBox2->Location = System::Drawing::Point(252, 9);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(146, 102);
+			this->pictureBox2->Size = System::Drawing::Size(172, 102);
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox2->TabIndex = 1;
 			this->pictureBox2->TabStop = false;
 			// 
 			// pictureBox3
 			// 
-			this->pictureBox3->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(3, 111);
+			this->pictureBox3->Location = System::Drawing::Point(3, 132);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(130, 123);
+			this->pictureBox3->Size = System::Drawing::Size(167, 123);
+			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox3->TabIndex = 2;
 			this->pictureBox3->TabStop = false;
 			// 
+			// tableLayoutPanel9
+			// 
+			this->tableLayoutPanel9->ColumnCount = 3;
+			this->tableLayoutPanel9->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel9->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel9->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel9->Controls->Add(this->BobHouse, 0, 0);
+			this->tableLayoutPanel9->Controls->Add(this->ElsaHouse, 1, 0);
+			this->tableLayoutPanel9->Controls->Add(this->SelbastienHouse, 2, 0);
+			this->tableLayoutPanel9->Location = System::Drawing::Point(252, 124);
+			this->tableLayoutPanel9->Name = L"tableLayoutPanel9";
+			this->tableLayoutPanel9->RowCount = 1;
+			this->tableLayoutPanel9->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel9->Size = System::Drawing::Size(172, 62);
+			this->tableLayoutPanel9->TabIndex = 4;
+			this->tableLayoutPanel9->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel9_Paint);
+			// 
+			// BobHouse
+			// 
+			this->BobHouse->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->BobHouse->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"BobHouse.Image")));
+			this->BobHouse->Location = System::Drawing::Point(3, 3);
+			this->BobHouse->Name = L"BobHouse";
+			this->BobHouse->Size = System::Drawing::Size(51, 56);
+			this->BobHouse->TabIndex = 0;
+			this->BobHouse->TabStop = false;
+			this->BobHouse->Visible = false;
+			this->BobHouse->Click += gcnew System::EventHandler(this, &MyForm1::pictureBox5_Click_1);
+			// 
+			// ElsaHouse
+			// 
+			this->ElsaHouse->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ElsaHouse->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ElsaHouse.Image")));
+			this->ElsaHouse->Location = System::Drawing::Point(60, 3);
+			this->ElsaHouse->Name = L"ElsaHouse";
+			this->ElsaHouse->Size = System::Drawing::Size(51, 56);
+			this->ElsaHouse->TabIndex = 1;
+			this->ElsaHouse->TabStop = false;
+			// 
+			// SelbastienHouse
+			// 
+			this->SelbastienHouse->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->SelbastienHouse->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SelbastienHouse.Image")));
+			this->SelbastienHouse->Location = System::Drawing::Point(117, 3);
+			this->SelbastienHouse->Name = L"SelbastienHouse";
+			this->SelbastienHouse->Size = System::Drawing::Size(52, 56);
+			this->SelbastienHouse->TabIndex = 2;
+			this->SelbastienHouse->TabStop = false;
+			this->SelbastienHouse->Visible = false;
+			// 
+			// tableLayoutPanel10
+			// 
+			this->tableLayoutPanel10->ColumnCount = 3;
+			this->tableLayoutPanel10->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel10->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel10->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel10->Controls->Add(this->BobBank, 0, 0);
+			this->tableLayoutPanel10->Controls->Add(this->ElsaBank, 1, 0);
+			this->tableLayoutPanel10->Controls->Add(this->SelbastienBank, 2, 0);
+			this->tableLayoutPanel10->Location = System::Drawing::Point(539, 269);
+			this->tableLayoutPanel10->Name = L"tableLayoutPanel10";
+			this->tableLayoutPanel10->RowCount = 1;
+			this->tableLayoutPanel10->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel10->Size = System::Drawing::Size(162, 62);
+			this->tableLayoutPanel10->TabIndex = 5;
+			// 
+			// BobBank
+			// 
+			this->BobBank->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->BobBank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"BobBank.Image")));
+			this->BobBank->Location = System::Drawing::Point(3, 3);
+			this->BobBank->Name = L"BobBank";
+			this->BobBank->Size = System::Drawing::Size(48, 56);
+			this->BobBank->TabIndex = 0;
+			this->BobBank->TabStop = false;
+			this->BobBank->Visible = false;
+			// 
+			// ElsaBank
+			// 
+			this->ElsaBank->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ElsaBank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ElsaBank.Image")));
+			this->ElsaBank->Location = System::Drawing::Point(57, 3);
+			this->ElsaBank->Name = L"ElsaBank";
+			this->ElsaBank->Size = System::Drawing::Size(48, 56);
+			this->ElsaBank->TabIndex = 1;
+			this->ElsaBank->TabStop = false;
+			this->ElsaBank->Visible = false;
+			// 
+			// SelbastienBank
+			// 
+			this->SelbastienBank->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->SelbastienBank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SelbastienBank.Image")));
+			this->SelbastienBank->Location = System::Drawing::Point(111, 3);
+			this->SelbastienBank->Name = L"SelbastienBank";
+			this->SelbastienBank->Size = System::Drawing::Size(48, 56);
+			this->SelbastienBank->TabIndex = 2;
+			this->SelbastienBank->TabStop = false;
+			this->SelbastienBank->Visible = false;
+			// 
+			// tableLayoutPanel11
+			// 
+			this->tableLayoutPanel11->ColumnCount = 3;
+			this->tableLayoutPanel11->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel11->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel11->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel11->Controls->Add(this->BobMine, 0, 0);
+			this->tableLayoutPanel11->Controls->Add(this->ElsaMine, 1, 0);
+			this->tableLayoutPanel11->Controls->Add(this->SelbastienMine, 2, 0);
+			this->tableLayoutPanel11->Location = System::Drawing::Point(3, 269);
+			this->tableLayoutPanel11->Name = L"tableLayoutPanel11";
+			this->tableLayoutPanel11->RowCount = 1;
+			this->tableLayoutPanel11->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel11->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute,
+				62)));
+			this->tableLayoutPanel11->Size = System::Drawing::Size(167, 62);
+			this->tableLayoutPanel11->TabIndex = 6;
+			// 
+			// BobMine
+			// 
+			this->BobMine->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->BobMine->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"BobMine.Image")));
+			this->BobMine->Location = System::Drawing::Point(3, 3);
+			this->BobMine->Name = L"BobMine";
+			this->BobMine->Size = System::Drawing::Size(49, 56);
+			this->BobMine->TabIndex = 0;
+			this->BobMine->TabStop = false;
+			this->BobMine->Visible = false;
+			// 
+			// ElsaMine
+			// 
+			this->ElsaMine->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ElsaMine->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ElsaMine.Image")));
+			this->ElsaMine->Location = System::Drawing::Point(58, 3);
+			this->ElsaMine->Name = L"ElsaMine";
+			this->ElsaMine->Size = System::Drawing::Size(49, 56);
+			this->ElsaMine->TabIndex = 1;
+			this->ElsaMine->TabStop = false;
+			this->ElsaMine->Visible = false;
+			// 
+			// SelbastienMine
+			// 
+			this->SelbastienMine->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->SelbastienMine->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SelbastienMine.Image")));
+			this->SelbastienMine->Location = System::Drawing::Point(113, 3);
+			this->SelbastienMine->Name = L"SelbastienMine";
+			this->SelbastienMine->Size = System::Drawing::Size(51, 56);
+			this->SelbastienMine->TabIndex = 2;
+			this->SelbastienMine->TabStop = false;
+			this->SelbastienMine->Visible = false;
+			// 
+			// tableLayoutPanel12
+			// 
+			this->tableLayoutPanel12->ColumnCount = 3;
+			this->tableLayoutPanel12->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel12->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel12->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				33.33333F)));
+			this->tableLayoutPanel12->Controls->Add(this->BobSaloon, 0, 0);
+			this->tableLayoutPanel12->Controls->Add(this->ElsaSaloon, 1, 0);
+			this->tableLayoutPanel12->Controls->Add(this->SelbastienSaloon, 2, 0);
+			this->tableLayoutPanel12->Dock = System::Windows::Forms::DockStyle::Top;
+			this->tableLayoutPanel12->Location = System::Drawing::Point(252, 407);
+			this->tableLayoutPanel12->Name = L"tableLayoutPanel12";
+			this->tableLayoutPanel12->RowCount = 1;
+			this->tableLayoutPanel12->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel12->Size = System::Drawing::Size(172, 61);
+			this->tableLayoutPanel12->TabIndex = 7;
+			// 
+			// BobSaloon
+			// 
+			this->BobSaloon->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->BobSaloon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"BobSaloon.Image")));
+			this->BobSaloon->Location = System::Drawing::Point(3, 3);
+			this->BobSaloon->Name = L"BobSaloon";
+			this->BobSaloon->Size = System::Drawing::Size(51, 55);
+			this->BobSaloon->TabIndex = 0;
+			this->BobSaloon->TabStop = false;
+			this->BobSaloon->Visible = false;
+			// 
+			// ElsaSaloon
+			// 
+			this->ElsaSaloon->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ElsaSaloon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ElsaSaloon.Image")));
+			this->ElsaSaloon->Location = System::Drawing::Point(60, 3);
+			this->ElsaSaloon->Name = L"ElsaSaloon";
+			this->ElsaSaloon->Size = System::Drawing::Size(51, 55);
+			this->ElsaSaloon->TabIndex = 1;
+			this->ElsaSaloon->TabStop = false;
+			this->ElsaSaloon->Visible = false;
+			// 
+			// SelbastienSaloon
+			// 
+			this->SelbastienSaloon->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->SelbastienSaloon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SelbastienSaloon.Image")));
+			this->SelbastienSaloon->Location = System::Drawing::Point(117, 3);
+			this->SelbastienSaloon->Name = L"SelbastienSaloon";
+			this->SelbastienSaloon->Size = System::Drawing::Size(52, 55);
+			this->SelbastienSaloon->TabIndex = 2;
+			this->SelbastienSaloon->TabStop = false;
+			// 
 			// pictureBox4
 			// 
-			this->pictureBox4->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(267, 240);
+			this->pictureBox4->Location = System::Drawing::Point(252, 269);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(146, 135);
+			this->pictureBox4->Size = System::Drawing::Size(172, 132);
+			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox4->TabIndex = 3;
 			this->pictureBox4->TabStop = false;
 			// 
@@ -269,7 +572,7 @@ namespace Projet1 {
 			this->tableLayoutPanel1->Controls->Add(this->tableLayoutPanel5, 1, 0);
 			this->tableLayoutPanel1->Controls->Add(this->tableLayoutPanel3, 0, 0);
 			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(0, 444);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(0, 495);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 1;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
@@ -343,6 +646,7 @@ namespace Projet1 {
 			this->richTextBox2->Location = System::Drawing::Point(5, 32);
 			this->richTextBox2->Name = L"richTextBox2";
 			this->richTextBox2->ReadOnly = true;
+			this->richTextBox2->ShowSelectionMargin = true;
 			this->richTextBox2->Size = System::Drawing::Size(220, 161);
 			this->richTextBox2->TabIndex = 1;
 			this->richTextBox2->Text = L"";
@@ -410,6 +714,7 @@ namespace Projet1 {
 			this->richTextBox1->Location = System::Drawing::Point(5, 33);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->ReadOnly = true;
+			this->richTextBox1->ShowSelectionMargin = true;
 			this->richTextBox1->Size = System::Drawing::Size(218, 160);
 			this->richTextBox1->TabIndex = 1;
 			this->richTextBox1->Text = L"";
@@ -536,17 +841,35 @@ namespace Projet1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(704, 648);
+			this->ClientSize = System::Drawing::Size(704, 699);
 			this->Controls->Add(this->tableLayoutPanel2);
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->menuStrip1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm1";
 			this->tableLayoutPanel2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
+			this->tableLayoutPanel9->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobHouse))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaHouse))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienHouse))->EndInit();
+			this->tableLayoutPanel10->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobBank))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaBank))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienBank))->EndInit();
+			this->tableLayoutPanel11->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobMine))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaMine))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienMine))->EndInit();
+			this->tableLayoutPanel12->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BobSaloon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ElsaSaloon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SelbastienSaloon))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			this->tableLayoutPanel1->ResumeLayout(false);
 			this->tableLayoutPanel7->ResumeLayout(false);
@@ -603,7 +926,7 @@ private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, Sys
 		//dispatch any delayed messages
 		Dispatch->DispatchDelayedMessages();
 
-		Sleep(4000);
+		Sleep(1000);
 	}
 
 	//tidy up
@@ -616,8 +939,12 @@ private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, Sys
 }
 private: System::Void modifierLesÉtatsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	//Form ^f = gcnew ModificationAgents(this);
-	Form ^f = gcnew ModificationAgents();
+	Form ^f = gcnew ModificationAgents(Bob, Elsa, Selbastien);
 	f->Show();
+}
+private: System::Void tableLayoutPanel9_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+}
+private: System::Void pictureBox5_Click_1(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

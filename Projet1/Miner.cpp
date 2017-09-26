@@ -17,8 +17,6 @@ void Miner::Update()
   m_pStateMachine->Update();
 }
 
-
-
 void Miner::AddToGoldCarried(const int val)
 {
   m_iGoldCarried += val;
@@ -57,4 +55,9 @@ bool Miner::FatiguedForFight()const
 		return true;
 	}
 	return false;
+}
+
+void Miner::ChangeState(State<Miner>* state)
+{ 
+	m_pStateMachine->SetCurrentState(state);
 }

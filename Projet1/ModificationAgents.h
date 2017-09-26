@@ -19,16 +19,12 @@ namespace Projet2 {
 	public ref class ModificationAgents : public System::Windows::Forms::Form
 	{
 	public:
-		//ModificationAgents(Miner* bob, MinersWife* elsa, Drunk* selbastien)
-		//{
-		//	Bob = bob;
-		//	Elsa = elsa;
-		//	Selbastien = selbastien;
-
-//			InitializeComponent();
-	//	}
-		ModificationAgents()
+		ModificationAgents(Miner* bob, MinersWife* elsa, Drunk* selbastien)
 		{
+			agentBob = bob;
+			agentElsa = elsa;
+			agentSelbastien = selbastien;
+
 			InitializeComponent();
 		}
 
@@ -158,7 +154,7 @@ namespace Projet2 {
 			this->comboBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"DoHousework", L"VisitBathroom" });
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"DoHousework" });
 			this->comboBox2->Location = System::Drawing::Point(123, 80);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(167, 21);
@@ -254,11 +250,37 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	ModificationAgents::Close();
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	//this->Hide();
-	this->label1->Text = this->comboBox1->Text;
-	this->label2->Text = this->comboBox2->Text;
-	this->label3->Text = this->comboBox3->Text;
-	//Bob->GetFSM->ChangeState(DrunkenRage::Instance());
+	// switch for Bob
+	switch (this->comboBox1->SelectedIndex)
+	{
+	case 0: agentBob->ChangeState(GoHomeAndSleepTilRested::Instance()); break;
+	case 1: agentBob->ChangeState(EnterMineAndDigForNugget::Instance()); break;
+	case 2: agentBob->ChangeState(VisitBankAndDepositGold::Instance()); break;
+	case 3: agentBob->ChangeState(QuenchThirst::Instance()); break;
+	case 4: agentBob->ChangeState(FightForPride::Instance()); break;
+	case 5: agentBob->ChangeState(RoundForEveryone::Instance()); break;
+	default:
+		break;
+	}
+	// switch for Elsa
+	switch (this->comboBox2->SelectedIndex)
+	{
+	case 0: agentElsa->ChangeState(DoHouseWork::Instance()); break;
+	default:
+		break;
+	}
+	// switch for Selbastien
+	switch (this->comboBox3->SelectedIndex)
+	{
+	case 0: agentSelbastien->ChangeState(OrderADrinkAndBottomUp::Instance()); break;
+	case 1: agentSelbastien->ChangeState(DrunkenRage::Instance()); break;
+	case 2: agentSelbastien->ChangeState(DanceOnTheTable::Instance()); break;
+	default:
+		break;
+	}
+
+	this->Hide();
+	
 	//Projet1::MyForm1::changeStateBob("coucou");
 	//MyForm1::changeStateElsa();
 	//MyForm1::changeStateSelBastien(this->comboBox3->Text->ToString);

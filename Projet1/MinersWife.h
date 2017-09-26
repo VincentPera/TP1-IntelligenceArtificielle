@@ -56,6 +56,7 @@ public:
 
   //this must be implemented
   void          Update();
+  void			ChangeState(State<MinersWife>* state);
 
   //so must this
   virtual bool  HandleMessage(const Telegram& msg);

@@ -76,6 +76,7 @@ public:
 
   //this must be implemented
   void Update();
+  void ChangeState(State<Miner>* state);
 
   //so must this
   virtual bool  HandleMessage(const Telegram& msg);
@@ -88,7 +89,8 @@ public:
   //-------------------------------------------------------------accessors
   location_type Location()const{return m_Location;}
   void          ChangeLocation(location_type loc){m_Location=loc;}
-    
+  
+
   int           GoldCarried()const{return m_iGoldCarried;}
   void          SetGoldCarried(int val){m_iGoldCarried = val;}
   void          AddToGoldCarried(int val);

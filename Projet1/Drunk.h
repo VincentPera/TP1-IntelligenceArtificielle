@@ -6,7 +6,7 @@
 //
 //  Desc:   A class defining a druck man.
 //
-//  Author: Mat Buckland 2002 (fup@ai-junkie.com)
+//  Author: /
 //
 //------------------------------------------------------------------------
 #include <string>
@@ -50,13 +50,13 @@ public:
     
     m_pStateMachine->SetCurrentState(OrderADrinkAndBottomUp::Instance());
 
-    /* NOTE, A GLOBAL STATE HAS NOT BEEN IMPLEMENTED FOR THE MINER */
   }
 
   ~Drunk(){delete m_pStateMachine;}
 
   //this must be implemented
   void Update();
+  void ChangeState(State<Drunk>* state);
 
   //so must this
   virtual bool  HandleMessage(const Telegram& msg);

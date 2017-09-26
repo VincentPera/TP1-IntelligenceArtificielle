@@ -1,4 +1,5 @@
 #include "BaseGameEntity.h"
+#include "fsm/StateMachine.h"
 #include <cassert>
 
 
