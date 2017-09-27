@@ -39,13 +39,12 @@ void EnterMineAndDigForNugget::Enter(Miner* pMiner)
   if (pMiner->Location() != goldmine)
   {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Walkin' to the goldmine";
-	MyForm1::getTextBob()->Text += "\n";
-	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	//MyForm1::getTextBob()->Text += ">> Walkin' to the goldmine";
+	//MyForm1::getTextBob()->Text += "\n";
+	//MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
+	//MyForm1::getTextBob()->ScrollToCaret();
 
     pMiner->ChangeLocation(goldmine);
-	MyForm1::changeLocationBob(1);
   }
 }
 
@@ -61,22 +60,20 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
   pMiner->IncreaseFatigue();
 
   // display text in the proper richTextBox
-  MyForm1::getTextBob()->Text += ">> Pickin' up a nugget";
-  MyForm1::getTextBob()->Text += "\n";
-  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  //MyForm1::getTextBob()->Text += ">> Pickin' up a nugget";
+  //MyForm1::getTextBob()->Text += "\n";
+  //MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
+  //MyForm1::getTextBob()->ScrollToCaret();
 
   //if enough gold mined, go and put it in the bank
   if (pMiner->PocketsFull())
   {
     pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
-	MyForm1::changeStateBob("VisitBankAndDepositGold");
   }
 
   if (pMiner->Thirsty())
   {
     pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
-	MyForm1::changeStateBob("QuenchThirst");
   }
 }
 
@@ -84,10 +81,10 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 void EnterMineAndDigForNugget::Exit(Miner* pMiner)
 {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Ah'm leavin' the goldmine with mah pockets full o' sweet gold";
-	MyForm1::getTextBob()->Text += "\n";
-	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	/*myform1::gettextbob()->text += ">> ah'm leavin' the goldmine with mah pockets full o' sweet gold";
+	myform1::gettextbob()->text += "\n";
+	myform1::gettextbob()->selectionstart = myform1::gettextbob()->text->length;
+	myform1::gettextbob()->scrolltocaret();*/
 }
 
 
@@ -112,13 +109,12 @@ void VisitBankAndDepositGold::Enter(Miner* pMiner)
   if (pMiner->Location() != bank)
   {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Goin' to the bank. Yes siree";
+	/*MyForm1::getTextBob()->Text += ">> Goin' to the bank. Yes siree";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 
     pMiner->ChangeLocation(bank);
-	MyForm1::changeLocationBob(2);
   }
 }
 
@@ -130,41 +126,39 @@ void VisitBankAndDepositGold::Execute(Miner* pMiner)
     
   pMiner->SetGoldCarried(0);
 
-  MyForm1::getTextBob()->Text += ">> Depositing gold. Total savings now:";
+  /*MyForm1::getTextBob()->Text += ">> Depositing gold. Total savings now:";
   MyForm1::getTextBob()->Text += System::Convert::ToString(pMiner->GoldCarried());
   MyForm1::getTextBob()->Text += " ";
   MyForm1::getTextBob()->Text += System::Convert::ToString(pMiner->Wealth());
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  MyForm1::getTextBob()->ScrollToCaret();*/
 
   //wealthy enough to have a well earned rest?
   if (pMiner->Wealth() >= ComfortLevel)
   {
-	MyForm1::getTextBob()->Text += ">> WooHoo! Rich enough for now. Back home to mah li'lle lady";
+	/*MyForm1::getTextBob()->Text += ">> WooHoo! Rich enough for now. Back home to mah li'lle lady";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
       
     pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());  
-	MyForm1::changeStateBob("GoHomeAndSleepTilRested");
   }
 
   //otherwise get more gold
   else 
   {
     pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-	MyForm1::changeStateBob("EnterMineAndDigForNugget");
   }
 }
 
 
 void VisitBankAndDepositGold::Exit(Miner* pMiner)
 {
-  MyForm1::getTextBob()->Text += ">> Leavin' the bank";
+  /*MyForm1::getTextBob()->Text += ">> Leavin' the bank";
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 
@@ -186,13 +180,12 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 {
   if (pMiner->Location() != shack)
   {
-	MyForm1::getTextBob()->Text += ">> Walkin' home";
+	/*MyForm1::getTextBob()->Text += ">> Walkin' home";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 
     pMiner->ChangeLocation(shack);
-	MyForm1::changeLocationBob(0);
 
 
     //let the wife know I'm home
@@ -209,13 +202,10 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
   //if miner is not fatigued start to dig for nuggets again.
   if (!pMiner->Fatigued())
   {
-	 MyForm1::getTextBob()->Text += ">> All mah fatigue has drained away. Time to find more gold!";
-	 MyForm1::getTextBob()->Text += "\n";
-	 MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	 MyForm1::getTextBob()->ScrollToCaret();
+
+	 //MyForm1::addTextBob(">> All mah fatigue has drained away. Time to find more gold!\n");
 
      pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-	 MyForm1::changeStateBob("EnterMineAndDigForNugget");
   }
 
   else 
@@ -223,10 +213,10 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
     //sleep
     pMiner->DecreaseFatigue();
 
-	MyForm1::getTextBob()->Text += ">> ZZZZ...";
+	/*MyForm1::getTextBob()->Text += ">> ZZZZ...";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
   } 
 }
 
@@ -249,13 +239,12 @@ bool GoHomeAndSleepTilRested::OnMessage(Miner* pMiner, const Telegram& msg)
 
      SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-	 MyForm1::getTextBob()->Text += ">> Okay Hun, ahm a comin'!";
+	 /*MyForm1::getTextBob()->Text += ">> Okay Hun, ahm a comin'!";
 	 MyForm1::getTextBob()->Text += "\n";
 	 MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	 MyForm1::getTextBob()->ScrollToCaret();
+	 MyForm1::getTextBob()->ScrollToCaret();*/
 
      pMiner->GetFSM()->ChangeState(EatStew::Instance());
-	 MyForm1::changeStateBob("EatStew");
       
      return true;
 
@@ -278,12 +267,11 @@ void QuenchThirst::Enter(Miner* pMiner)
   if (pMiner->Location() != saloon)
   {    
     pMiner->ChangeLocation(saloon);
-	MyForm1::changeLocationBob(3);
 
-	MyForm1::getTextBob()->Text += ">> Boy, ah sure is thusty! Walking to the saloon";
+	/*MyForm1::getTextBob()->Text += ">> Boy, ah sure is thusty! Walking to the saloon";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 
   }
 }
@@ -292,21 +280,20 @@ void QuenchThirst::Execute(Miner* pMiner)
 {
   pMiner->BuyAndDrinkAWhiskey();
  
-  MyForm1::getTextBob()->Text += ">> Un bon whiskey bien frais ";
+  /*MyForm1::getTextBob()->Text += ">> Un bon whiskey bien frais ";
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  MyForm1::getTextBob()->ScrollToCaret();*/
 
 
   if (!pMiner->Thirsty())
   {
-	  MyForm1::getTextBob()->Text += ">> Go back to work !";
+	  /*MyForm1::getTextBob()->Text += ">> Go back to work !";
 	  MyForm1::getTextBob()->Text += "\n";
 	  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	  MyForm1::getTextBob()->ScrollToCaret();
+	  MyForm1::getTextBob()->ScrollToCaret();*/
 
 	  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-	  MyForm1::changeStateBob("EnterMineAndDigForNugget");
   }
 }
 
@@ -327,7 +314,8 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
    {
    case Msg_Tournee:
 
-	   if(pMiner->GoldCarried()<=1){
+	   if(pMiner->GoldCarried()<=1)
+	   {
 
 		   cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
      << " at time: " << Clock->GetCurrentTime();
@@ -340,15 +328,16 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 		   SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-	 MyForm1::getTextBob()->Text += ">> I can't afford a round for everyone.. ";
+	 /*MyForm1::getTextBob()->Text += ">> I can't afford a round for everyone.. ";
 	 MyForm1::getTextBob()->Text += "\n";
 	 MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	 MyForm1::getTextBob()->ScrollToCaret();
+	 MyForm1::getTextBob()->ScrollToCaret();*/
 
 	 pMiner->GetFSM()->ChangeState(FightForPride::Instance());
-	 MyForm1::changeStateBob("FightForPride");
 
-	   }else{
+	   }
+	   else
+	   {
 
 		   cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			   << " at time: " << Clock->GetCurrentTime();
@@ -361,13 +350,12 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 		   SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-	 MyForm1::getTextBob()->Text += ">> Well, let's have fun !";
+	 /*MyForm1::getTextBob()->Text += ">> Well, let's have fun !";
 	 MyForm1::getTextBob()->Text += "\n";
 	 MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	 MyForm1::getTextBob()->ScrollToCaret();
+	 MyForm1::getTextBob()->ScrollToCaret();*/
 
 	 pMiner->GetFSM()->ChangeState(RoundForEveryone::Instance());
-	 MyForm1::changeStateBob("RoundForEveryone");
 	   }
 
 	   return true;
@@ -391,28 +379,28 @@ EatStew* EatStew::Instance()
 
 void EatStew::Enter(Miner* pMiner)
 {
-  MyForm1::getTextBob()->Text += ">> Smells Reaaal goood Elsa!";
+  /*MyForm1::getTextBob()->Text += ">> Smells Reaaal goood Elsa!";
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 void EatStew::Execute(Miner* pMiner)
 {
-  MyForm1::getTextBob()->Text += ">> Tastes real good too!";
+  /*MyForm1::getTextBob()->Text += ">> Tastes real good too!";
   MyForm1::getTextBob()->Text += "\n";
   MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-  MyForm1::getTextBob()->ScrollToCaret();
+  MyForm1::getTextBob()->ScrollToCaret();*/
 
   pMiner->GetFSM()->RevertToPreviousState();
 }
 
 void EatStew::Exit(Miner* pMiner)
 { 
-	MyForm1::getTextBob()->Text += ">> Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
+	/*MyForm1::getTextBob()->Text += ">> Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 
@@ -435,17 +423,17 @@ FightForPride* FightForPride::Instance()
 void FightForPride::Enter(Miner* pMiner)
 {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Let's Fight SelBastien !";
+	/*MyForm1::getTextBob()->Text += ">> Let's Fight SelBastien !";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 void FightForPride::Execute(Miner* pMiner)
 {
   if(pMiner->FatiguedForFight()){
-	  if(pMiner->GoldCarried()>1){
-		
+	  if(pMiner->GoldCarried()>1)
+	  {
 		  Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
                               pMiner->ID(),        //ID of sender
                               ent_SeLbastien,            //ID of recipient
@@ -453,16 +441,15 @@ void FightForPride::Execute(Miner* pMiner)
                               NO_ADDITIONAL_INFO);
 
 		  // display text in the proper richTextBox
-		  MyForm1::getTextBob()->Text += ">> I lost.. Well, I guess I have to pay this time !";
+		  /*MyForm1::getTextBob()->Text += ">> I lost.. Well, I guess I have to pay this time !";
 		  MyForm1::getTextBob()->Text += "\n";
 		  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-		  MyForm1::getTextBob()->ScrollToCaret();
+		  MyForm1::getTextBob()->ScrollToCaret();*/
 
 		  pMiner->GetFSM()->ChangeState(RoundForEveryone::Instance());
-		  MyForm1::changeStateBob("RoundForEveryone");
-
-	  }else{
-
+	  }
+	  else
+	  {
 		  Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
                               pMiner->ID(),        //ID of sender
                               ent_SeLbastien,            //ID of recipient
@@ -470,15 +457,16 @@ void FightForPride::Execute(Miner* pMiner)
                               NO_ADDITIONAL_INFO);
 
 		  // display text in the proper richTextBox
-		  MyForm1::getTextBob()->Text += ">> I lost.. And i need dollars.. Next time !";
+		  /*MyForm1::getTextBob()->Text += ">> I lost.. And i need dollars.. Next time !";
 		  MyForm1::getTextBob()->Text += "\n";
 		  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-		  MyForm1::getTextBob()->ScrollToCaret();
+		  MyForm1::getTextBob()->ScrollToCaret();*/
 
 		  pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
-		  MyForm1::changeStateBob("GoHomeAndSleepTilRested");
 	  }
-  }else{
+  }
+  else
+  {
 
 	  Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
                               pMiner->ID(),        //ID of sender
@@ -487,13 +475,12 @@ void FightForPride::Execute(Miner* pMiner)
                               NO_ADDITIONAL_INFO); 
 
 	  // display text in the proper richTextBox
-	  MyForm1::getTextBob()->Text += ">> I win!";
+	  /*MyForm1::getTextBob()->Text += ">> I win!";
 	  MyForm1::getTextBob()->Text += "\n";
 	  MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	  MyForm1::getTextBob()->ScrollToCaret();
+	  MyForm1::getTextBob()->ScrollToCaret();*/
 
 	  pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
-	  MyForm1::changeStateBob("QuenchThirst");
   }
 }
 
@@ -521,33 +508,32 @@ RoundForEveryone* RoundForEveryone::Instance()
 void RoundForEveryone::Enter(Miner* pMiner)
 {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Round for everyone! Enjoy fellows!";
+	/*MyForm1::getTextBob()->Text += ">> Round for everyone! Enjoy fellows!";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 void RoundForEveryone::Execute(Miner* pMiner)
 {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> That round taste really good.";
+	/*MyForm1::getTextBob()->Text += ">> That round taste really good.";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 
   pMiner->BuyARound();
 
   pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
-  MyForm1::changeStateBob("QuenchThirst");
 }
 
 void RoundForEveryone::Exit(Miner* pMiner)
 {
 	// display text in the proper richTextBox
-	MyForm1::getTextBob()->Text += ">> Back to work";
+	/*MyForm1::getTextBob()->Text += ">> Back to work";
 	MyForm1::getTextBob()->Text += "\n";
 	MyForm1::getTextBob()->SelectionStart = MyForm1::getTextBob()->Text->Length;
-	MyForm1::getTextBob()->ScrollToCaret();
+	MyForm1::getTextBob()->ScrollToCaret();*/
 }
 
 bool RoundForEveryone::OnMessage(Miner* pMiner, const Telegram& msg)

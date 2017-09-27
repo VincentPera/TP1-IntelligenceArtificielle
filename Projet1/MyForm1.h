@@ -3,6 +3,7 @@
 #include <fstream>
 #include <time.h>
 
+#include "BaseGameEntity.h"
 #include "Locations.h"
 #include "Miner.h"
 #include "Drunk.h"
@@ -14,8 +15,6 @@
 
 #include "ModificationAgents.h"
 
-using namespace Projet2;
-
 namespace Projet1 {
 
 	using namespace System;
@@ -24,6 +23,7 @@ namespace Projet1 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Threading;
 
 	/// <summary>
 	/// Description résumée de MyForm1
@@ -34,9 +34,9 @@ namespace Projet1 {
 		MyForm1(void)
 		{
 			//define this to send output to a text file (see locations.h)
-			#ifdef TEXTOUTPUT
-						os.open("output.txt");
-			#endif
+#ifdef TEXTOUTPUT
+			os.open("output.txt");
+#endif
 
 			//seed random number generator
 			srand((unsigned)time(NULL));
@@ -53,43 +53,189 @@ namespace Projet1 {
 
 			InitializeComponent();
 		}
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextBob(){ return richTextBox3; }
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextElsa(){ return richTextBox1; }
-		static System::Windows::Forms::RichTextBox^ MyForm1::getTextSelbatien(){ return richTextBox2; }
-		static void changeStateBob(String^ state){ label6 -> Text = state; }
-		static void changeStateElsa(String^ state){ label5 -> Text = state; }
-		static void changeStateSelBastien(String^ state){ label4 -> Text = state; }
 
-		static void changeLocationBob(int location)
+		void MarshalString(String ^ s, std::wstring& os) {
+			using namespace Runtime::InteropServices;
+			const wchar_t* chars =
+				(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
+			os = chars;
+			Marshal::FreeHGlobal(IntPtr((void*)chars));
+		}
+
+		delegate void SetTextDelegate(String^ text);
+		void MyForm1::addTextBob(String ^text)
 		{
-			switch (location)
+			if (richTextBox3->InvokeRequired)
 			{
-			case 0: // house
-				BobHouse->Show();
+				SetTextDelegate^ d = gcnew SetTextDelegate(this, &MyForm1::addTextBob);
+				this->Invoke(d, gcnew array<String^> { text });
+			}
+			else
+			{
+				richTextBox3->Text += text;
+				richTextBox3->SelectionStart = richTextBox3->Text->Length;
+				richTextBox3->ScrollToCaret();
+			}
+		}
+		void MyForm1::addTextElsa(String ^text)
+		{
+			if (richTextBox1->InvokeRequired)
+			{
+				SetTextDelegate^ d = gcnew SetTextDelegate(this, &MyForm1::addTextElsa);
+				this->Invoke(d, gcnew array<String^> { text });
+			}
+			else
+			{
+				richTextBox1->Text += text;
+				richTextBox1->SelectionStart = richTextBox1->Text->Length;
+				richTextBox1->ScrollToCaret();
+			}
+		}
+
+		delegate void changeStateBobDelegate(String^ text);
+		void changeStateBob(String^ state) {
+			if (this->label6->InvokeRequired)
+			{
+				changeStateBobDelegate^ d =
+					gcnew changeStateBobDelegate(this, &MyForm1::changeStateBob);
+				this->Invoke(d, gcnew array<Object^> { state });
+			}
+			else
+			{
+				label6->Text = state;
+			}
+		}
+		delegate void changeStateElsaDelegate(String^ text);
+		void changeStateElsa(String^ texte) {
+			if (this->label6->InvokeRequired)
+			{
+				changeStateElsaDelegate^ d =
+					gcnew changeStateElsaDelegate(this, &MyForm1::changeStateElsa);
+				this->Invoke(d, gcnew array<Object^> { texte });
+			}
+			else
+			{
+				label5->Text = texte;
+			}
+		}
+		delegate void changeStateSelbastienDelegate(String^ text);
+		void changeStateSelbastien(String^ texte) {
+			if (this->label6->InvokeRequired)
+			{
+				changeStateSelbastienDelegate^ d =
+					gcnew changeStateSelbastienDelegate(this, &MyForm1::changeStateElsa);
+				this->Invoke(d, gcnew array<Object^> { texte });
+			}
+			else
+			{
+				label5->Text = texte;
+			}
+		}
+
+		// Thread for the agent Bob
+		void ThrFunc1()
+		{
+			for (int i = 0; i<15; i++)
+			{
+				// update the agent
+				Bob->Update();
+				// update the IU
+				location_type l = Bob->Location();
+				this->changeLocationBob(l);
+				std::string curr_state = Bob->GetFSM()->GetNameOfCurrentState();
+				String^ state = gcnew String(curr_state.c_str());
+				this->changeStateBob(state);
+				// text
+
+				//this->Refresh();
+
+				//dispatch any delayed messages
+				Dispatch->DispatchDelayedMessages();
+
+				Thread::Sleep(800);
+			}
+			//notify that the thread is done
+			this->addTextBob(">> Thread finished.\n");
+			//tidy up
+			delete Bob;
+		}
+
+		// Thread for the agent Elsa
+		void ThrFunc2()
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				// update the agent
+				Elsa->Update();
+				// update the IU
+				std::string curr_state = Elsa->GetFSM()->GetNameOfCurrentState();
+				String^ state = gcnew String(curr_state.c_str());
+				this->changeStateElsa(state);
+				// text
+				//this->Refresh();
+				//dispatch any delayed messages
+				Dispatch->DispatchDelayedMessages();
+				Thread::Sleep(800);
+			}
+			//notify that the thread is done
+			this->addTextElsa(">> Thread finished.\n");
+			//tidy up
+			delete Elsa;
+		}
+
+		// Thread for the agent SelBastien
+		void ThrFunc3()
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				// update the agent
+				Selbastien->Update();
+				// update the IU
+				std::string curr_state = Selbastien->GetFSM()->GetNameOfCurrentState();
+				String^ state = gcnew String(curr_state.c_str());
+				this->changeStateSelbastien(state);
+				// text
+				//this->Refresh();
+				//dispatch any delayed messages
+				Dispatch->DispatchDelayedMessages();
+				Thread::Sleep(800);
+			}
+			//notify that the thread is done
+			this->addTextElsa(">> Thread finished.\n");
+			//tidy up
+			delete Elsa;
+		}
+
+		delegate void changeLocationBobDelegate(int location);
+		void changeLocationBob(int location)
+		{
+			// Request the lock, and block until it is obtained.
+			if (this->BobHouse->InvokeRequired && this->BobMine->InvokeRequired &&
+				this->BobSaloon->InvokeRequired && this->BobBank->InvokeRequired)
+			{
+				changeLocationBobDelegate^ d =
+					gcnew changeLocationBobDelegate(this, &MyForm1::changeLocationBob);
+				this->Invoke(d, gcnew int { location });
+			}
+			else
+			{
+				BobHouse->Hide();
 				BobMine->Hide();
 				BobSaloon->Hide();
 				BobBank->Hide();
-				break;
-			case 1: // mine
-				BobHouse->Hide();
-				BobMine->Show();
-				BobSaloon->Hide();
-				BobBank->Hide();
-				break;
-			case 2: // bank
-				BobHouse->Hide();
-				BobMine->Hide();
-				BobSaloon->Hide();
-				BobBank->Show();
-				break;
-			case 3: // saloon
-				BobHouse->Hide();
-				BobMine->Hide();
-				BobSaloon->Show();
-				BobBank->Hide();
-				break;
-			default:
-				break;
+				switch (location)
+				{
+				case shack: BobHouse->Show();
+					break;
+				case goldmine: BobMine->Show();
+					break;
+				case bank: BobBank->Show();
+					break;
+				case saloon: BobSaloon->Show();
+					break;
+				default:
+					break;
+				}
 			}
 		}
 
@@ -107,9 +253,9 @@ namespace Projet1 {
 
 	protected:
 
-	private: Miner* Bob;
-	private: MinersWife* Elsa;
-	private: Drunk* Selbastien;
+	protected: static Miner* Bob;
+	protected: static MinersWife* Elsa;
+	protected: static Drunk* Selbastien;
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
 
 
@@ -129,9 +275,12 @@ namespace Projet1 {
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel5;
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel6;
 	private: System::Windows::Forms::Label^  label2;
-	private: static System::Windows::Forms::RichTextBox^  richTextBox2;
-	private: static System::Windows::Forms::RichTextBox^  richTextBox1;
-	private: static System::Windows::Forms::RichTextBox^  richTextBox3;
+private: System::Windows::Forms::RichTextBox^  richTextBox2;
+private: System::Windows::Forms::RichTextBox^  richTextBox1;
+private: System::Windows::Forms::RichTextBox^  richTextBox3;
+
+
+
 
 
 
@@ -151,9 +300,12 @@ namespace Projet1 {
 	private: System::Windows::Forms::ToolStripMenuItem^  quitterToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  agentsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  modifierLesÉtatsToolStripMenuItem;
-	private: static System::Windows::Forms::Label^  label4;
-	private: static System::Windows::Forms::Label^  label5;
-	private: static System::Windows::Forms::Label^  label6;
+private: System::Windows::Forms::Label^  label4;
+private: System::Windows::Forms::Label^  label5;
+private: System::Windows::Forms::Label^  label6;
+
+
+
 
 
 
@@ -164,30 +316,34 @@ namespace Projet1 {
 
 
 	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel9;
-private: static System::Windows::Forms::PictureBox^  BobHouse;
-private: System::Windows::Forms::PictureBox^  ElsaHouse;
-private: System::Windows::Forms::PictureBox^  SelbastienHouse;
+private: System::Windows::Forms::PictureBox^  BobHouse;
+
+	private: System::Windows::Forms::PictureBox^  ElsaHouse;
+	private: System::Windows::Forms::PictureBox^  SelbastienHouse;
 
 
 
-private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel10;
-private: static System::Windows::Forms::PictureBox^  BobBank;
-private: System::Windows::Forms::PictureBox^  ElsaBank;
-private: System::Windows::Forms::PictureBox^  SelbastienBank;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel10;
+private: System::Windows::Forms::PictureBox^  BobBank;
+
+	private: System::Windows::Forms::PictureBox^  ElsaBank;
+	private: System::Windows::Forms::PictureBox^  SelbastienBank;
 
 
 
-private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel11;
-private: static System::Windows::Forms::PictureBox^  BobMine;
-private: System::Windows::Forms::PictureBox^  ElsaMine;
-private: System::Windows::Forms::PictureBox^  SelbastienMine;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel11;
+private: System::Windows::Forms::PictureBox^  BobMine;
+
+	private: System::Windows::Forms::PictureBox^  ElsaMine;
+	private: System::Windows::Forms::PictureBox^  SelbastienMine;
 
 
 
-private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel12;
-private: static System::Windows::Forms::PictureBox^  BobSaloon;
-private: System::Windows::Forms::PictureBox^  ElsaSaloon;
-private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel12;
+private: System::Windows::Forms::PictureBox^  BobSaloon;
+
+	private: System::Windows::Forms::PictureBox^  ElsaSaloon;
+	private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 
 
 
@@ -314,7 +470,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.01274F)));
 			this->tableLayoutPanel2->Size = System::Drawing::Size(704, 471);
 			this->tableLayoutPanel2->TabIndex = 7;
-			this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel2_Paint);
 			// 
 			// pictureBox1
 			// 
@@ -367,7 +522,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->tableLayoutPanel9->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tableLayoutPanel9->Size = System::Drawing::Size(172, 62);
 			this->tableLayoutPanel9->TabIndex = 4;
-			this->tableLayoutPanel9->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel9_Paint);
 			// 
 			// BobHouse
 			// 
@@ -379,7 +533,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->BobHouse->TabIndex = 0;
 			this->BobHouse->TabStop = false;
 			this->BobHouse->Visible = false;
-			this->BobHouse->Click += gcnew System::EventHandler(this, &MyForm1::pictureBox5_Click_1);
 			// 
 			// ElsaHouse
 			// 
@@ -594,7 +747,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->tableLayoutPanel1->Size = System::Drawing::Size(704, 204);
 			this->tableLayoutPanel1->TabIndex = 6;
 			this->tableLayoutPanel1->TabStop = true;
-			this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel1_Paint);
 			// 
 			// tableLayoutPanel7
 			// 
@@ -613,7 +765,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->tableLayoutPanel7->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 86.7347F)));
 			this->tableLayoutPanel7->Size = System::Drawing::Size(230, 198);
 			this->tableLayoutPanel7->TabIndex = 5;
-			this->tableLayoutPanel7->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::tableLayoutPanel7_Paint);
 			// 
 			// tableLayoutPanel8
 			// 
@@ -642,7 +793,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->label3->TabIndex = 0;
 			this->label3->Text = L"Selbastien";
 			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			this->label3->Click += gcnew System::EventHandler(this, &MyForm1::label3_Click);
 			// 
 			// label4
 			// 
@@ -652,7 +802,7 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(152, 13);
 			this->label4->TabIndex = 1;
-			this->label4->Text = L"label4";
+			this->label4->Text = L"OrderADrinkAndBottomsUp";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// richTextBox2
@@ -779,7 +929,6 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Bob";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm1::label1_Click_2);
 			// 
 			// label6
 			// 
@@ -789,7 +938,7 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(159, 13);
 			this->label6->TabIndex = 1;
-			this->label6->Text = L"label6";
+			this->label6->Text = L"GoHomeAndSleepTilRested";
 			this->label6->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// richTextBox3
@@ -903,63 +1052,30 @@ private: System::Windows::Forms::PictureBox^  SelbastienSaloon;
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		// Thread for the agent Bob
+		Thread ^threadBob = gcnew Thread(gcnew ThreadStart(this, &MyForm1::ThrFunc1));
+		threadBob->Name = "Thread1";
+
+		// Thread for the agent Elsa
+		Thread ^threadElsa = gcnew Thread(gcnew ThreadStart(this, &MyForm1::ThrFunc2));
+		threadElsa->Name = "Thread2";
+
+		// Launch threads
+		threadBob->Start();
+		threadElsa->Start();
+
+		//delete Elsa;
+		//delete Selbastien;
+
+		//wait for a keypress before exiting
+		//PressAnyKeyToContinue();
 	}
-private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void tableLayoutPanel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-private: System::Void groupBox1_Enter_1(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void tableLayoutPanel2_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-private: System::Void pictureBox5_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void tableLayoutPanel3_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-private: System::Void label1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label1_Click_2(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void tableLayoutPanel7_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-private: System::Void lancerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-
-	//run Bob and Elsa through a few Update calls
-	for (int i = 0; i<30; ++i)
-	{
-		Selbastien->Update();
-		Bob->Update();
-		Elsa->Update();
-
-		this->Refresh();
-
-		//dispatch any delayed messages
-		Dispatch->DispatchDelayedMessages();
-
-		Sleep(1000);
+	private: System::Void modifierLesÉtatsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		Form ^f = gcnew ModificationAgents(Bob, Elsa, Selbastien);
+		f->Show();
 	}
-
-	//tidy up
-	delete Bob;
-	delete Elsa;
-	delete Selbastien;
-
-	//wait for a keypress before exiting
-	//PressAnyKeyToContinue();
-}
-private: System::Void modifierLesÉtatsToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	//Form ^f = gcnew ModificationAgents(this);
-	Form ^f = gcnew ModificationAgents(Bob, Elsa, Selbastien);
-	f->Show();
-}
-private: System::Void tableLayoutPanel9_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-}
-private: System::Void pictureBox5_Click_1(System::Object^  sender, System::EventArgs^  e) {
-}
 };
 }
+

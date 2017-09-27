@@ -4,7 +4,7 @@
 #include "Drunk.h"
 #include "MinersWife.h"
 
-namespace Projet2 {
+namespace Projet1 {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -60,6 +60,8 @@ namespace Projet2 {
 
 
 	private: System::Windows::Forms::PictureBox^  pictureBox3;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::PictureBox^  pictureBox2;
 
 
 	private:
@@ -75,6 +77,7 @@ namespace Projet2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(ModificationAgents::typeid));
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -86,9 +89,13 @@ namespace Projet2 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// flowLayoutPanel1
@@ -138,6 +145,8 @@ namespace Projet2 {
 			this->tableLayoutPanel1->Controls->Add(this->label2, 1, 1);
 			this->tableLayoutPanel1->Controls->Add(this->label3, 1, 2);
 			this->tableLayoutPanel1->Controls->Add(this->pictureBox3, 0, 2);
+			this->tableLayoutPanel1->Controls->Add(this->pictureBox1, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->pictureBox2, 0, 0);
 			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->tableLayoutPanel1->Location = System::Drawing::Point(0, 0);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
@@ -223,11 +232,32 @@ namespace Projet2 {
 			// pictureBox3
 			// 
 			this->pictureBox3->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
 			this->pictureBox3->Location = System::Drawing::Point(3, 122);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(51, 64);
 			this->pictureBox3->TabIndex = 9;
 			this->pictureBox3->TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(3, 65);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(51, 51);
+			this->pictureBox1->TabIndex = 10;
+			this->pictureBox1->TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
+			this->pictureBox2->Location = System::Drawing::Point(3, 3);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(51, 56);
+			this->pictureBox2->TabIndex = 11;
+			this->pictureBox2->TabStop = false;
 			// 
 			// ModificationAgents
 			// 
@@ -242,6 +272,8 @@ namespace Projet2 {
 			this->tableLayoutPanel1->ResumeLayout(false);
 			this->tableLayoutPanel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -280,10 +312,6 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	}
 
 	this->Hide();
-	
-	//Projet1::MyForm1::changeStateBob("coucou");
-	//MyForm1::changeStateElsa();
-	//MyForm1::changeStateSelBastien(this->comboBox3->Text->ToString);
 }
 };
 }
