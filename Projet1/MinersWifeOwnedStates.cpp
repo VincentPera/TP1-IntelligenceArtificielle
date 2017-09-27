@@ -80,10 +80,7 @@ DoHouseWork* DoHouseWork::Instance()
 
 void DoHouseWork::Enter(MinersWife* wife)
 {
-  /*MyForm1::getTextElsa()->Text += ">> Time to do some more housework!";
-  MyForm1::getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Time to do some more housework!\n");
 }
 
 
@@ -93,28 +90,19 @@ void DoHouseWork::Execute(MinersWife* wife)
   {
   case 0:
 
-	/*MyForm1::getTextElsa()->Text += ">> Moppin' the floor";
-	MyForm1::getTextElsa()->Text += "\n";
-	MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-	MyForm1::getTextElsa()->ScrollToCaret();*/
+	wife->addSpeech(">> Moppin' the floor\n");
 
     break;
 
   case 1:
 
-	/*MyForm1::getTextElsa()->Text += ">> Washin' the dishes";
-	MyForm1::getTextElsa()->Text += "\n";
-	MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-	MyForm1::getTextElsa()->ScrollToCaret();*/
+	wife->addSpeech(">> Washin' the dishes\n");
 
     break;
 
   case 2:
 
-	/*MyForm1::getTextElsa()->Text += ">> Makin' the bed";
-	MyForm1::getTextElsa()->Text += "\n";
-	MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-	MyForm1::getTextElsa()->ScrollToCaret();*/
+	wife->addSpeech(">> Makin' the bed\n");
 
     break;
   }
@@ -141,29 +129,20 @@ VisitBathroom* VisitBathroom::Instance()
 
 void VisitBathroom::Enter(MinersWife* wife)
 {
-  /*MyForm1::getTextElsa()->Text += ">> Walkin' to the can. Need to powda mah pretty li'lle nose";
-  MyForm1::getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Walkin' to the can. Need to powda mah pretty li'lle nose\n");
 }
 
 
 void VisitBathroom::Execute(MinersWife* wife)
 {
-  /*MyForm1::getTextElsa()->Text += ">> Ahhhhhh! Sweet relief!";
-  MyForm1::getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Ahhhhhh! Sweet relief!\n");
 
   wife->GetFSM()->RevertToPreviousState();
 }
 
 void VisitBathroom::Exit(MinersWife* wife)
 {
-  /*MyForm1::getTextElsa()->Text += ">> Leavin' the Jon";
-  MyForm1::getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Leavin' the Jon\n");
 }
 
 
@@ -188,10 +167,7 @@ void CookStew::Enter(MinersWife* wife)
   //if not already cooking put the stew in the oven
   if (!wife->Cooking())
   {
-	/*MyForm1::getTextElsa()->Text += ">> Putting the stew in the oven";
-	MyForm1::getTextElsa()->Text += "\n";
-	MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-	MyForm1::getTextElsa()->ScrollToCaret();*/
+	wife->addSpeech(">> Putting the stew in the oven\n");
   
     //send a delayed message myself so that I know when to take the stew
     //out of the oven
@@ -208,20 +184,14 @@ void CookStew::Enter(MinersWife* wife)
 
 void CookStew::Execute(MinersWife* wife)
 {
-  /*MyForm1::getTextElsa()->Text += ">> Fussin' over food";
-  MyForm1::getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Fussin' over food\n");
 }
 
 void CookStew::Exit(MinersWife* wife)
 {
   SetTextColor(FOREGROUND_GREEN|FOREGROUND_INTENSITY);
   
-  /*MyForm1::getTextElsa()->Text += ">> Puttin' the stew on the table";
-  MyForm1:	:getTextElsa()->Text += "\n";
-  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-  MyForm1::getTextElsa()->ScrollToCaret();*/
+  wife->addSpeech(">> Puttin' the stew on the table\n");
 }
 
 
@@ -237,10 +207,8 @@ bool CookStew::OnMessage(MinersWife* wife, const Telegram& msg)
            " at time: " << Clock->GetCurrentTime();
 
       SetTextColor(FOREGROUND_GREEN|FOREGROUND_INTENSITY);
-	  /*MyForm1::getTextElsa()->Text += ">> StewReady! Lets eat";
-	  MyForm1::getTextElsa()->Text += "\n";
-	  MyForm1::getTextElsa()->SelectionStart = MyForm1::getTextElsa()->Text->Length;
-	  MyForm1::getTextElsa()->ScrollToCaret();*/
+
+	  wife->addSpeech(">> StewReady! Lets eat\n");
 
       //let hubby know the stew is ready
       Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,

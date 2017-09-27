@@ -24,3 +24,18 @@ void BaseGameEntity::SetID(int val)
     
   m_iNextValidID = m_ID + 1;
 }
+
+void BaseGameEntity::addSpeech(std::string dialog)
+{
+	m_speech += dialog;
+}
+
+std::string	BaseGameEntity::getSpeech()const
+{
+	return m_speech;
+}
+
+void BaseGameEntity::resetSpeech()
+{
+	m_speech = "";
+}

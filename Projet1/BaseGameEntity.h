@@ -22,6 +22,8 @@ private:
   //every entity must have a unique identifying number
   int          m_ID;
 
+  std::string	m_speech;
+
   //this is the next valid ID. Each time a BaseGameEntity is instantiated
   //this value is updated
   static int  m_iNextValidID;
@@ -48,7 +50,11 @@ public:
   //using the MessageDispatcher singleton class
   virtual bool  HandleMessage(const Telegram& msg)=0;
 
-  int           ID()const{return m_ID;}  
+  int           ID()const{return m_ID;} 
+
+  std::string	getSpeech()const;
+  void			addSpeech(std::string dialogs);
+  void			resetSpeech();
 };
 
 

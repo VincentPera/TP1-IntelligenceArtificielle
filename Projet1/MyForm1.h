@@ -62,12 +62,12 @@ namespace Projet1 {
 			Marshal::FreeHGlobal(IntPtr((void*)chars));
 		}
 
-		delegate void SetTextDelegate(String^ text);
-		void MyForm1::addTextBob(String ^text)
+		delegate void addDialogsDelegate(String^ text);
+		void MyForm1::addDialogsBob(String ^text)
 		{
 			if (richTextBox3->InvokeRequired)
 			{
-				SetTextDelegate^ d = gcnew SetTextDelegate(this, &MyForm1::addTextBob);
+				addDialogsDelegate^ d = gcnew addDialogsDelegate(this, &MyForm1::addDialogsBob);
 				this->Invoke(d, gcnew array<String^> { text });
 			}
 			else
@@ -77,11 +77,11 @@ namespace Projet1 {
 				richTextBox3->ScrollToCaret();
 			}
 		}
-		void MyForm1::addTextElsa(String ^text)
+		void MyForm1::addDialogsElsa(String ^text)
 		{
 			if (richTextBox1->InvokeRequired)
 			{
-				SetTextDelegate^ d = gcnew SetTextDelegate(this, &MyForm1::addTextElsa);
+				addDialogsDelegate^ d = gcnew addDialogsDelegate(this, &MyForm1::addDialogsElsa);
 				this->Invoke(d, gcnew array<String^> { text });
 			}
 			else
@@ -91,13 +91,27 @@ namespace Projet1 {
 				richTextBox1->ScrollToCaret();
 			}
 		}
+		void MyForm1::addDialogsSelbastien(String ^text)
+		{
+			if (richTextBox2->InvokeRequired)
+			{
+				addDialogsDelegate^ d = gcnew addDialogsDelegate(this, &MyForm1::addDialogsSelbastien);
+				this->Invoke(d, gcnew array<String^> { text });
+			}
+			else
+			{
+				richTextBox2->Text += text;
+				richTextBox2->SelectionStart = richTextBox1->Text->Length;
+				richTextBox2->ScrollToCaret();
+			}
+		}
 
-		delegate void changeStateBobDelegate(String^ text);
+		delegate void changeStateDelegate(String^ text);
 		void changeStateBob(String^ state) {
 			if (this->label6->InvokeRequired)
 			{
-				changeStateBobDelegate^ d =
-					gcnew changeStateBobDelegate(this, &MyForm1::changeStateBob);
+				changeStateDelegate^ d =
+					gcnew changeStateDelegate(this, &MyForm1::changeStateBob);
 				this->Invoke(d, gcnew array<Object^> { state });
 			}
 			else
@@ -105,12 +119,11 @@ namespace Projet1 {
 				label6->Text = state;
 			}
 		}
-		delegate void changeStateElsaDelegate(String^ text);
 		void changeStateElsa(String^ texte) {
 			if (this->label6->InvokeRequired)
 			{
-				changeStateElsaDelegate^ d =
-					gcnew changeStateElsaDelegate(this, &MyForm1::changeStateElsa);
+				changeStateDelegate^ d =
+					gcnew changeStateDelegate(this, &MyForm1::changeStateElsa);
 				this->Invoke(d, gcnew array<Object^> { texte });
 			}
 			else
@@ -118,17 +131,16 @@ namespace Projet1 {
 				label5->Text = texte;
 			}
 		}
-		delegate void changeStateSelbastienDelegate(String^ text);
 		void changeStateSelbastien(String^ texte) {
-			if (this->label6->InvokeRequired)
+			if (this->label4->InvokeRequired)
 			{
-				changeStateSelbastienDelegate^ d =
-					gcnew changeStateSelbastienDelegate(this, &MyForm1::changeStateElsa);
+				changeStateDelegate^ d =
+					gcnew changeStateDelegate(this, &MyForm1::changeStateSelbastien);
 				this->Invoke(d, gcnew array<Object^> { texte });
 			}
 			else
 			{
-				label5->Text = texte;
+				label4->Text = texte;
 			}
 		}
 
@@ -139,23 +151,28 @@ namespace Projet1 {
 			{
 				// update the agent
 				Bob->Update();
-				// update the IU
+				// update the IU with the agent
+					// update the location
 				location_type l = Bob->Location();
 				this->changeLocationBob(l);
+					// update the state
 				std::string curr_state = Bob->GetFSM()->GetNameOfCurrentState();
 				String^ state = gcnew String(curr_state.c_str());
 				this->changeStateBob(state);
-				// text
-
-				//this->Refresh();
+					// update the richTextBox
+				std::string curr_dialogs = Bob->getSpeech();
+				String^ dialogs = gcnew String(curr_dialogs.c_str());
+				this->addDialogsBob(dialogs);
+					// reset the dialog
+				Bob->resetSpeech();
 
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
 
-				Thread::Sleep(800);
+				Thread::Sleep(2000);
 			}
 			//notify that the thread is done
-			this->addTextBob(">> Thread finished.\n");
+			this->addDialogsBob(">> Thread finished.\n");
 			//tidy up
 			delete Bob;
 		}
@@ -168,17 +185,22 @@ namespace Projet1 {
 				// update the agent
 				Elsa->Update();
 				// update the IU
+					// update the state
 				std::string curr_state = Elsa->GetFSM()->GetNameOfCurrentState();
 				String^ state = gcnew String(curr_state.c_str());
 				this->changeStateElsa(state);
-				// text
-				//this->Refresh();
+					// update the richTextBox
+				std::string curr_dialogs = Elsa->getSpeech();
+				String^ dialogs = gcnew String(curr_dialogs.c_str());
+				this->addDialogsElsa(dialogs);
+				Elsa->resetSpeech();
+
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
 				Thread::Sleep(800);
 			}
 			//notify that the thread is done
-			this->addTextElsa(">> Thread finished.\n");
+			this->addDialogsElsa(">> Thread finished.\n");
 			//tidy up
 			delete Elsa;
 		}
@@ -201,9 +223,9 @@ namespace Projet1 {
 				Thread::Sleep(800);
 			}
 			//notify that the thread is done
-			this->addTextElsa(">> Thread finished.\n");
+			this->addDialogsSelbastien(">> Thread finished.\n");
 			//tidy up
-			delete Elsa;
+			delete Selbastien;
 		}
 
 		delegate void changeLocationBobDelegate(int location);
@@ -248,6 +270,10 @@ namespace Projet1 {
 			if (components)
 			{
 				delete components;
+				// tidy up
+				delete Bob;
+				delete Elsa;
+				delete Selbastien;
 			}
 		}
 
@@ -1062,9 +1088,14 @@ private: System::Windows::Forms::PictureBox^  BobSaloon;
 		Thread ^threadElsa = gcnew Thread(gcnew ThreadStart(this, &MyForm1::ThrFunc2));
 		threadElsa->Name = "Thread2";
 
+		// Thread for the agent Elsa
+		Thread ^threadSelbastien = gcnew Thread(gcnew ThreadStart(this, &MyForm1::ThrFunc3));
+		threadSelbastien->Name = "Thread3";
+
 		// Launch threads
 		threadBob->Start();
 		threadElsa->Start();
+		threadSelbastien->Start();
 
 		//delete Elsa;
 		//delete Selbastien;

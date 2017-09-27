@@ -109,6 +109,7 @@ public:
   void          BuyAndDrinkAWhiskey(){m_iThirst = 0; m_iMoneyInBank-=2;}
   void			BuyARound(){if(m_iThirst!=0){m_iThirst = 0; m_iGoldCarried-=1;}}
 
+
 };
 
 

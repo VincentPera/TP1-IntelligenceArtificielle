@@ -23,8 +23,9 @@ Class Projet1.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     MarshalString(String, basic_string<wchar_t\,std::char_traits<wchar_t>\,std::allocator<wchar_t> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    addTextBob(String): PrivateScope, Public, HideBySig
-    addTextElsa(String): PrivateScope, Public, HideBySig
+    addDialogsBob(String): PrivateScope, Public, HideBySig
+    addDialogsElsa(String): PrivateScope, Public, HideBySig
+    addDialogsSelbastien(String): PrivateScope, Public, HideBySig
     changeStateBob(String): PrivateScope, Public, HideBySig
     changeStateElsa(String): PrivateScope, Public, HideBySig
     changeStateSelbastien(String): PrivateScope, Public, HideBySig
@@ -32,28 +33,14 @@ Class Projet1.MyForm1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ThrFunc2(): PrivateScope, Public, HideBySig
     ThrFunc3(): PrivateScope, Public, HideBySig
     changeLocationBob(Int32): PrivateScope, Public, HideBySig
-Class Projet1.MyForm1+SetTextDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+Class Projet1.MyForm1+addDialogsDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
   :System.MulticastDelegate
     Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
   Methods:
     Invoke(String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
     BeginInvoke(String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
     EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-Class Projet1.MyForm1+changeStateBobDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
-  :System.MulticastDelegate
-    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
-  Methods:
-    Invoke(String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-    BeginInvoke(String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-Class Projet1.MyForm1+changeStateElsaDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
-  :System.MulticastDelegate
-    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
-  Methods:
-    Invoke(String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-    BeginInvoke(String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
-Class Projet1.MyForm1+changeStateSelbastienDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+Class Projet1.MyForm1+changeStateDelegate: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
   :System.MulticastDelegate
     Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
   Methods:
