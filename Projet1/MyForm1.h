@@ -325,7 +325,7 @@ private: System::Windows::Forms::RichTextBox^  richTextBox3;
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  applicationToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  lancerToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  quitterToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^  agentsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  modifierLesÉtatsToolStripMenuItem;
 private: System::Windows::Forms::Label^  label4;
@@ -433,7 +433,6 @@ private: System::Windows::Forms::PictureBox^  BobSaloon;
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->applicationToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->lancerToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->quitterToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->agentsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->modifierLesÉtatsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tableLayoutPanel2->SuspendLayout();
@@ -994,10 +993,7 @@ private: System::Windows::Forms::PictureBox^  BobSaloon;
 			// 
 			// applicationToolStripMenuItem
 			// 
-			this->applicationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->lancerToolStripMenuItem,
-					this->quitterToolStripMenuItem
-			});
+			this->applicationToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->lancerToolStripMenuItem });
 			this->applicationToolStripMenuItem->Name = L"applicationToolStripMenuItem";
 			this->applicationToolStripMenuItem->Size = System::Drawing::Size(80, 20);
 			this->applicationToolStripMenuItem->Text = L"Application";
@@ -1005,15 +1001,9 @@ private: System::Windows::Forms::PictureBox^  BobSaloon;
 			// lancerToolStripMenuItem
 			// 
 			this->lancerToolStripMenuItem->Name = L"lancerToolStripMenuItem";
-			this->lancerToolStripMenuItem->Size = System::Drawing::Size(111, 22);
+			this->lancerToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->lancerToolStripMenuItem->Text = L"Lancer";
 			this->lancerToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm1::lancerToolStripMenuItem_Click);
-			// 
-			// quitterToolStripMenuItem
-			// 
-			this->quitterToolStripMenuItem->Name = L"quitterToolStripMenuItem";
-			this->quitterToolStripMenuItem->Size = System::Drawing::Size(111, 22);
-			this->quitterToolStripMenuItem->Text = L"Quitter";
 			// 
 			// agentsToolStripMenuItem
 			// 

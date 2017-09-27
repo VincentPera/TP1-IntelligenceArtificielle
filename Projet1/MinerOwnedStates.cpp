@@ -370,7 +370,7 @@ void FightForPride::Enter(Miner* pMiner)
 void FightForPride::Execute(Miner* pMiner)
 {
   if(pMiner->FatiguedForFight()){
-	  if(pMiner->GoldCarried()>1)
+	  if(pMiner->GoldCarried()>=1)
 	  {
 		  Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
                               pMiner->ID(),        //ID of sender
