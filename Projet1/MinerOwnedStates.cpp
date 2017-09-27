@@ -168,7 +168,7 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
                               pMiner->ID(),        //ID of sender
                               ent_Elsa,            //ID of recipient
                               Msg_HiHoneyImHome,   //the message
-                              NO_ADDITIONAL_INFO);    
+                              NO_ADDITIONAL_INFO); 
   }
 }
 

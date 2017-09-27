@@ -147,7 +147,7 @@ namespace Projet1 {
 		// Thread for the agent Bob
 		void ThrFunc1()
 		{
-			for (int i = 0; i<15; i++)
+			for (int i = 0; i<20; i++)
 			{
 				// update the agent
 				Bob->Update();
@@ -169,18 +169,17 @@ namespace Projet1 {
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
 
-				Thread::Sleep(2000);
+				Thread::Sleep(500);
 			}
 			//notify that the thread is done
 			this->addDialogsBob(">> Thread finished.\n");
-			//tidy up
-			delete Bob;
+			
 		}
 
 		// Thread for the agent Elsa
 		void ThrFunc2()
 		{
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < 20; i++)
 			{
 				// update the agent
 				Elsa->Update();
@@ -197,18 +196,17 @@ namespace Projet1 {
 
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
-				Thread::Sleep(800);
+				Thread::Sleep(500);
 			}
 			//notify that the thread is done
 			this->addDialogsElsa(">> Thread finished.\n");
-			//tidy up
-			delete Elsa;
+			
 		}
 
 		// Thread for the agent SelBastien
 		void ThrFunc3()
 		{
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < 20; i++)
 			{
 				// update the agent
 				Selbastien->Update();
@@ -220,12 +218,12 @@ namespace Projet1 {
 				//this->Refresh();
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
-				Thread::Sleep(800);
+				Thread::Sleep(500);
 			}
 			//notify that the thread is done
 			this->addDialogsSelbastien(">> Thread finished.\n");
-			//tidy up
-			delete Selbastien;
+			
+			
 		}
 
 		delegate void changeLocationBobDelegate(int location);
