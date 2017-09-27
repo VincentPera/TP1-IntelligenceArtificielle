@@ -101,7 +101,7 @@ namespace Projet1 {
 			else
 			{
 				richTextBox2->Text += text;
-				richTextBox2->SelectionStart = richTextBox1->Text->Length;
+				richTextBox2->SelectionStart = richTextBox2->Text->Length;
 				richTextBox2->ScrollToCaret();
 			}
 		}
@@ -214,8 +214,12 @@ namespace Projet1 {
 				std::string curr_state = Selbastien->GetFSM()->GetNameOfCurrentState();
 				String^ state = gcnew String(curr_state.c_str());
 				this->changeStateSelbastien(state);
-				// text
-				//this->Refresh();
+					// update the richTextBox
+				std::string curr_dialogs = Selbastien->getSpeech();
+				String^ dialogs = gcnew String(curr_dialogs.c_str());
+				this->addDialogsSelbastien(dialogs);
+				Selbastien->resetSpeech();
+
 				//dispatch any delayed messages
 				Dispatch->DispatchDelayedMessages();
 				Thread::Sleep(500);
